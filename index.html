@@ -107,6 +107,7 @@
     }
 
     .hero {
+      position: relative;
       min-height: 620px;
       background:
         linear-gradient(90deg, rgba(244, 245, 241, .98) 0%, rgba(244, 245, 241, .84) 44%, rgba(244, 245, 241, .18) 72%),
@@ -116,7 +117,13 @@
       animation: fade-up .75s ease-out both;
     }
 
+    .hero::before {
+      display: none;
+    }
+
     .hero-inner {
+      position: relative;
+      z-index: 1;
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
       padding: 92px 0 72px;
@@ -405,13 +412,21 @@
 
       .hero {
         min-height: auto;
+        overflow: hidden;
+        background: var(--mist);
+      }
+
+      .hero::before {
+        display: block;
+        height: 210px;
+        content: "";
         background:
-          linear-gradient(180deg, rgba(244, 245, 241, .98) 0%, rgba(244, 245, 241, .86) 54%, rgba(244, 245, 241, .72) 100%),
+          linear-gradient(180deg, rgba(31, 37, 34, .04), rgba(31, 37, 34, .22)),
           url("assets/hero-afwerking.png") center right / cover no-repeat;
       }
 
       .hero-inner {
-        padding: 74px 0 86px;
+        padding: 22px 0 40px;
       }
 
       .split,
@@ -443,7 +458,7 @@
       }
 
       .hero-inner {
-        padding: 58px 0 66px;
+        padding: 20px 0 34px;
       }
 
       .kicker {
@@ -451,7 +466,7 @@
       }
 
       h1 {
-        font-size: 38px;
+        font-size: 34px;
         line-height: 1.02;
       }
 
@@ -460,7 +475,15 @@
       }
 
       .lead {
-        font-size: 18px;
+        font-size: 16px;
+      }
+
+      .hero .kicker {
+        display: inline-flex;
+        margin-bottom: 4px;
+        padding: 7px 10px;
+        border-radius: 7px;
+        background: rgba(111, 129, 114, .14);
       }
 
       .actions,
@@ -470,7 +493,7 @@
       }
 
       .button {
-        min-height: 50px;
+        min-height: 46px;
       }
 
       section {
@@ -490,6 +513,24 @@
         padding: 18px;
       }
 
+      .service-list li,
+      .info-box,
+      .step {
+        border-left: 4px solid var(--wood);
+        box-shadow: 0 12px 30px rgba(31, 37, 34, .08);
+      }
+
+      .service-list strong,
+      .info-box strong {
+        color: var(--sage-dark);
+        font-size: 17px;
+      }
+
+      .contact-panel {
+        border: 1px solid rgba(255, 255, 255, .22);
+        box-shadow: 0 18px 36px rgba(31, 37, 34, .18);
+      }
+
       .contact {
         gap: 24px;
       }
@@ -502,6 +543,33 @@
 
       .map-embed {
         height: 190px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .topbar {
+        gap: 10px;
+        padding: 12px 0;
+      }
+
+      .brand {
+        font-size: 15px;
+      }
+
+      .hero::before {
+        height: 150px;
+      }
+
+      .hero-inner {
+        padding: 16px 0 24px;
+      }
+
+      h1 {
+        font-size: 29px;
+      }
+
+      .lead {
+        font-size: 15px;
       }
     }
   </style>
