@@ -17,6 +17,8 @@
       --line: #dce0d8;
       --white: #ffffff;
       --wood: #b89367;
+      --wood-soft: #efe3d2;
+      --sage-soft: #e6ebe4;
     }
 
     * {
@@ -33,7 +35,8 @@
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
-      background: var(--white);
+      background:
+        linear-gradient(180deg, #ffffff 0%, #ffffff 36%, #f8f6f0 100%);
     }
 
     @keyframes fade-up {
@@ -300,7 +303,17 @@
 
     section {
       padding: 72px 0;
-      animation: fade-up .75s ease-out both;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .split {
@@ -325,6 +338,16 @@
       color: var(--muted);
     }
 
+    .highlight-note {
+      margin-top: 24px;
+      padding: 20px;
+      border-left: 4px solid var(--wood);
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--wood-soft), #fffaf2);
+      color: #3f3529;
+      font-weight: 700;
+    }
+
     .service-list,
     .info-list {
       display: grid;
@@ -336,10 +359,12 @@
 
     .service-list li,
     .info-box {
+      position: relative;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--white);
-      padding: 18px;
+      padding: 22px;
+      box-shadow: 0 14px 32px rgba(31, 37, 34, .06);
       transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
     }
 
@@ -356,12 +381,47 @@
       margin-bottom: 4px;
     }
 
+    .service-list li::before {
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      background: var(--sage-soft);
+      color: var(--sage-dark);
+      font-weight: 700;
+    }
+
+    .service-list li:nth-child(1)::before {
+      content: "01";
+    }
+
+    .service-list li:nth-child(2)::before {
+      content: "02";
+    }
+
+    .service-list li:nth-child(3)::before {
+      content: "03";
+    }
+
     .band {
       margin: 0 calc(50% - 50vw);
       padding: 72px calc(50vw - 50%);
-      background: var(--mist);
+      background:
+        linear-gradient(135deg, rgba(72, 89, 77, .96), rgba(111, 129, 114, .9));
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
+      color: var(--white);
+    }
+
+    .band .kicker,
+    .band .step span {
+      color: #f1d5ad;
+    }
+
+    .band h2 {
+      max-width: 620px;
     }
 
     .steps {
@@ -373,18 +433,20 @@
 
     .step {
       padding: 22px;
+      border: 1px solid rgba(255, 255, 255, .2);
       border-left: 4px solid var(--wood);
-      background: var(--white);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(6px);
       transition: transform .2s ease, box-shadow .2s ease;
     }
 
     .step:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(31, 37, 34, .08);
+      box-shadow: 0 12px 28px rgba(31, 37, 34, .18);
     }
 
     .step span {
-      color: var(--sage-dark);
       font-weight: 700;
     }
 
@@ -398,8 +460,10 @@
     .contact-panel {
       padding: 28px;
       border-radius: 8px;
-      background: var(--sage-dark);
+      background:
+        linear-gradient(145deg, var(--sage-dark), #2f3b33);
       color: var(--white);
+      box-shadow: 0 18px 40px rgba(31, 37, 34, .16);
     }
 
     .contact-panel .muted {
@@ -636,77 +700,78 @@
   </header>
 
   <main>
-    <section class="split" id="diensten">
+    <section class="split reveal" id="diensten">
       <div>
         <div class="kicker">Vakwerk in afwerking</div>
         <h2>Voegwerken en afwerking met oog voor detail.</h2>
         <p>AGV Smeers Joeri helpt bij voegwerken en de afwerking van woningen en gebouwen. Van zorgvuldig voegen tot kleine herstellingen en de laatste afwerkingsfase van een renovatie: het werk wordt praktisch aangepakt en netjes opgeleverd.</p>
         <p class="muted">Als lokale vakman uit Wellen staat Joeri klaar voor duidelijke afspraken, verzorgd werk en een resultaat dat past bij uw woning of project.</p>
+        <p class="highlight-note">Duidelijke afspraken, proper werk en een afwerking die klopt tot in de details.</p>
       </div>
       <ul class="service-list">
-        <li>
+        <li class="reveal">
           <strong>Voegwerken</strong>
           Net en zorgvuldig voegwerk voor een verzorgde afwerking van muren, gevels en andere bouwdelen.
         </li>
-        <li>
+        <li class="reveal">
           <strong>Afwerking en herstellingen</strong>
           Verzorgde afwerking en kleine werken die een ruimte of project opnieuw netjes en bruikbaar maken.
         </li>
-        <li>
+        <li class="reveal">
           <strong>Renovatie-afwerking</strong>
           Praktische ondersteuning bij afwerkingsfases van renovatieprojecten en werken op maat.
         </li>
       </ul>
     </section>
 
-    <section class="band" id="werkwijze">
+    <section class="band reveal" id="werkwijze">
       <div class="kicker">Eenvoudige aanpak</div>
-      <h2>Van vraag tot nette afwerking.</h2>
+      <h2>Van eerste vraag tot nette oplevering.</h2>
       <div class="steps">
-        <div class="step">
+        <div class="step reveal">
           <span>01. Bespreken</span>
           <p>U geeft door welk werk nodig is en waar het project zich bevindt.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <span>02. Afspraken maken</span>
           <p>De gewenste timing, aanpak en praktische details worden helder afgestemd.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <span>03. Uitvoeren</span>
           <p>Het werk wordt verzorgd uitgevoerd met aandacht voor een proper eindresultaat.</p>
         </div>
       </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact reveal" id="contact">
       <div>
         <div class="kicker">Bedrijfsgegevens</div>
         <h2>AGV Smeers Joeri</h2>
         <p class="muted">Contacteer AGV Smeers Joeri voor vragen, afspraken of meer informatie over uw afwerkingswerk.</p>
         <div class="info-list">
-          <div class="info-box">
+          <div class="info-box reveal">
             <strong>Adres</strong>
             Zangstraat 6C, 3830 Wellen
           </div>
-          <div class="info-box">
+          <div class="info-box reveal">
             <strong>Ondernemingsnummer</strong>
             BE 0661.959.870
           </div>
-          <div class="info-box">
+          <div class="info-box reveal">
             <strong>Activiteit</strong>
             Voegwerken en afwerking van gebouwen
           </div>
-          <div class="info-box">
+          <div class="info-box reveal">
             <strong>Telefoon</strong>
             <a href="tel:+32476269015">0476 26 90 15</a>
           </div>
-          <div class="info-box">
+          <div class="info-box reveal">
             <strong>E-mail</strong>
             <a href="mailto:joeri.smeers@telenet.be">joeri.smeers@telenet.be</a>
           </div>
         </div>
       </div>
-      <div class="contact-panel">
+      <div class="contact-panel reveal">
         <h2>Neem contact op</h2>
         <p class="muted">Voor vragen, kleine werken of een afspraak kan u Joeri rechtstreeks contacteren.</p>
         <div class="contact-links">
@@ -742,5 +807,29 @@
       <span>Afwerking van gebouwen in Wellen</span>
     </div>
   </footer>
+  <script>
+    const revealItems = document.querySelectorAll(".reveal");
+
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
+    });
+
+    const revealOnScroll = () => {
+      revealItems.forEach((item) => {
+        if (item.classList.contains("is-visible")) {
+          return;
+        }
+
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 90) {
+          item.classList.add("is-visible");
+        }
+      });
+    };
+
+    revealOnScroll();
+    window.addEventListener("scroll", revealOnScroll, { passive: true });
+    window.addEventListener("resize", revealOnScroll);
+  </script>
 </body>
 </html>
